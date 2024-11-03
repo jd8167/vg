@@ -1,18 +1,30 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+// import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
-function StepThreeC() {
-  const navigate = useNavigate();
+function StepThreeC({ isCurrentStep, heading }) {
+  // const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
-  const { destination } = useParams();
-  const { visaHeading } = useOutletContext();
+  // const { destination } = useParams();
+  // const { visaHeading } = useOutletContext();
 
   return (
-    <>
+    <div
+      className="s bhx"
+      id="step=step_2b"
+      style={{
+        display: !isCurrentStep ? "none" : "block",
+        marginBottom: "230px",
+      }}
+    >
       <div className="bhw">
         <div>
           <h1 className="bcj bmi bvv bac wy bln">
-            <span>{visaHeading}</span>
+            <span>
+              {/* {visaHeading}  */}
+              {heading}
+            </span>
           </h1>
         </div>
       </div>
@@ -1441,13 +1453,14 @@ function StepThreeC() {
                 </div>
               </div>
               <div className="v2-space-y-24 jg">
-                <button
+                <HashLink
+                  to={"#step=step_2c"}
+                  state={{ form_heading: heading }}
                   className="cg ch cn cs cx dq btnContinue"
                   id="btnContinueSidebar"
-                  onClick={() => navigate(`/a/${destination}/step=step_4`)}
                 >
                   <span className="">Save and continue</span>
-                </button>
+                </HashLink>
                 <div>
                   <div className="bac bdm">
                     <div className="jt pr">
@@ -1509,18 +1522,19 @@ function StepThreeC() {
                 <div className="bcu">Total</div>
                 <div className="bcv">Calculated at checkout</div>
               </div>
-              <button
+              <HashLink
+                to={"#step=step_2c"}
+                state={{ form_heading: heading }}
                 className="cg ch co cu cx dq btnContinue"
                 id="btnContinueUnderSectionMobile"
-                onClick={() => navigate(`/a/${destination}/step=step_4`)}
               >
                 <span className="">Continue</span>
-              </button>
+              </HashLink>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

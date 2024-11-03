@@ -1,19 +1,16 @@
 import { Helmet } from "react-helmet";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import VisaCard from "./components/VisaCard";
 import { useAppContext } from "../../context/app-context";
 import NoVisa from "./NoVisa";
 
 function ApplicationLanding() {
-  const { visaData, setVisaHeading } = useOutletContext();
+  const { visaData } = useOutletContext();
   const { nationality } = useAppContext();
   const { egyptCard, egyptVisa } = visaData;
   const tiles = egyptVisa?.cards[0]?.tile_groups;
   const tileName = Object.keys(tiles)[0];
-  // console.log("card: ", egyptCard);
-  // console.log("visa: ", egyptVisa);
   const { destination } = useParams();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -249,11 +246,12 @@ function ApplicationLanding() {
                                           <VisaCard
                                             key={card.id}
                                             cardDetails={card}
-                                            handleClick={() => {
-                                              const heading = `${card.name} • ${card.visa_validity}, ${card.number_of_entries}`;
-                                              setVisaHeading(heading);
-                                              navigate("step=step_1");
-                                            }}
+                                            heading={`${card.name} • ${card.visa_validity}, ${card.number_of_entries}`}
+                                            // handleClick={() => {
+                                            //   const heading = `${card.name} • ${card.visa_validity}, ${card.number_of_entries}`;
+                                            //   setVisaHeading(heading);
+                                            //   navigate("step=step_1");
+                                            // }}
                                           />
                                         ))}
                                       </div>

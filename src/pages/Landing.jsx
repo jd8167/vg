@@ -68,6 +68,13 @@ function Landing() {
           rel="stylesheet"
           href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-DvT5LPrL-a90f4b38.css"
         ></link>
+        <title>
+          Global Online Visa Services &amp; Information Check | EVisa.com
+        </title>
+        <meta
+          name="description"
+          content="EVisa.com provides the simplest solution to process your travel visa. We enable travelers to process visas from a computer, smartphone or tablet."
+        ></meta>
       </Helmet>
       <div>
         <section

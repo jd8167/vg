@@ -1,7 +1,15 @@
+/* eslint-disable react/prop-types */
 // TODO: Work on the payment overlay
-function ReviewApplication() {
+function ReviewApplication({ isCurrentStep }) {
   return (
-    <>
+    <div
+      id="step=review"
+      className="s bhx"
+      style={{
+        display: !isCurrentStep ? "none" : "block",
+        marginBottom: "50px",
+      }}
+    >
       {/* <div className="fq" style={{ marginBottom: "230px" }}> */}
       <div className="bhw">
         <div>
@@ -430,7 +438,7 @@ function ReviewApplication() {
         </div>
       </div>
       {/* </div> */}
-    </>
+    </div>
   );
 }
 

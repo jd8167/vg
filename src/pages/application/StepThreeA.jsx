@@ -1,16 +1,28 @@
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+/* eslint-disable react/prop-types */
+// import { useNavigate, useParams } from "react-router-dom";
+import { days, months, years } from "../../data";
+import { useState } from "react";
+import { HashLink } from "react-router-hash-link";
 
-function StepThreeA() {
-  const navigate = useNavigate();
-  const { visaHeading } = useOutletContext();
-  const { destination } = useParams();
+function StepThreeA({ isCurrentStep, heading }) {
+  // const { visaHeading } = useOutletContext();
+  // const { destination } = useParams();
+  const [numOfTravelers, setNumOfTravelers] = useState(1);
 
   return (
-    <>
-      <div className="bhw" id="step=step_3a">
+    <div
+      className="s bhx"
+      id="step=step_2"
+      style={{
+        display: !isCurrentStep ? "none" : "block",
+        marginBottom: "230px",
+      }}
+    >
+      <div className="bhw">
         <div>
           <h1 className="bcj bmi bvv bac wy bln">
-            <span>{visaHeading}</span>
+            {/* <span>{visaHeading}</span> */}
+            <span>{heading}</span>
           </h1>
         </div>
       </div>
@@ -257,6 +269,7 @@ function StepThreeA() {
       <div className="bdv jg">
         <div id="question-container" className="bni">
           <div className="ng">
+            {/* form error element feedback */}
             <div>
               <div
                 className="rs vf bac bcp hs jt vx v2-space-x-8 pr"
@@ -277,637 +290,215 @@ function StepThreeA() {
                 <ul></ul>
               </div>
             </div>
+            {/* end of form error element feedback */}
             <div>
-              <div className="">
-                <div className="ng jt pr pw ia bol">
-                  <span className="bac bvy bcj">Your Personal Details</span>
-                </div>
-                <div>
-                  <p className="">
-                    These should match what&apos;s in your passport.
-                  </p>
-                </div>
-                <div className="yu bvh bok bpi ta tj">
-                  <div className="ho boo col-12">
-                    <div
-                      data-ivisa-slug="first_name"
-                      data-ivisa-question-selector="applicant.0.first_name"
-                      className=""
-                    >
-                      <div className="">
-                        <label className="by jt pr v2-space-x-8">
-                          <span>First and middle name</span>
-                        </label>
-                        <div className="dq">
-                          <input
-                            className="bn v2-small lg:v2-medium"
-                            name="applicant.0.first_name"
-                            required={true}
-                            placeholder="John William"
-                            spellCheck={false}
-                            autoComplete="given-name"
-                            type="text"
-                          />
-                          <span className="dp ei bmv en od">
-                            <div className="js bac">
-                              <svg
-                                className="me kg "
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                  fill="currentColor"
-                                ></path>
-                              </svg>
-                            </div>
-                          </span>
-                        </div>
-                        <div className="bdm ji bpu bab bu">
-                          <span>
-                            If you have a middle name, please include it.
-                          </span>
-                        </div>
-                      </div>
+              {Array(numOfTravelers)
+                .fill()
+                .map((_, index) => (
+                  <div className="" key={index}>
+                    <div className="ng jt pr pw ia bol">
+                      <span className="bac bvy bcj">{`${
+                        index < 1
+                          ? "Your Personal Details"
+                          : "Traveler #" + numOfTravelers + " Personal Details"
+                      }`}</span>
                     </div>
-                  </div>
-                  <div className="ho boo col-12">
-                    <div
-                      data-ivisa-slug="last_name"
-                      data-ivisa-question-selector="applicant.0.last_name"
-                      className=""
-                    >
-                      <div className="">
-                        <label className="by jt pr v2-space-x-8">
-                          <span>Last name</span>
-                        </label>
-                        <div className="dq">
-                          <input
-                            className="bn v2-small lg:v2-medium"
-                            name="applicant.0.last_name"
-                            required=""
-                            placeholder="Smith"
-                            spellCheck={false}
-                            autoComplete="family-name"
-                            type="text"
-                          />
-                          <span className="dp ei bmv en od">
-                            <div className="js bac">
-                              <svg
-                                className="me kg "
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                  fill="currentColor"
-                                ></path>
-                              </svg>
-                            </div>
-                          </span>
-                        </div>
-                        <div className="bdm ji bpu bab bu">
-                          <span>
-                            If your last name is hyphenated, use a space instead
-                            of a hyphen. For example, if your last name is
-                            Williams-Smith, enter “Williams Smith.”
-                          </span>
-                        </div>
-                      </div>
+                    <div>
+                      <p className="">
+                        These should match what&apos;s in your passport.
+                      </p>
                     </div>
-                  </div>
-                  <div className="ho boo col-12">
-                    <div
-                      data-ivisa-slug="dob"
-                      data-ivisa-question-selector="applicant.0.dob"
-                      className=""
-                    >
-                      <div className="">
-                        <label className="by jt pr v2-space-x-8">
-                          <span>Date of birth</span>
-                        </label>
-                        <div className="dq">
-                          <div type="date" className="sm vu">
-                            <div className="jt pr">
-                              <select
-                                name="applicant.0.dob.month"
-                                className="bn v2-small lg:v2-medium iz bpf"
-                                autoComplete="bday-month"
-                              >
-                                <option disabled="" value="">
-                                  Month
-                                </option>
-                                <option className="zr" value="1">
-                                  January
-                                </option>
-                                <option className="zr" value="2">
-                                  February
-                                </option>
-                                <option className="zr" value="3">
-                                  March
-                                </option>
-                                <option className="zr" value="4">
-                                  April
-                                </option>
-                                <option className="zr" value="5">
-                                  May
-                                </option>
-                                <option className="zr" value="6">
-                                  June
-                                </option>
-                                <option className="zr" value="7">
-                                  July
-                                </option>
-                                <option className="zr" value="8">
-                                  August
-                                </option>
-                                <option className="zr" value="9">
-                                  September
-                                </option>
-                                <option className="zr" value="10">
-                                  October
-                                </option>
-                                <option className="zr" value="11">
-                                  November
-                                </option>
-                                <option className="zr" value="12">
-                                  December
-                                </option>
-                              </select>
-                              <select
-                                name="applicant.0.dob.day"
-                                className="bn v2-small lg:v2-medium iz bpf"
-                                autoComplete="bday-day"
-                              >
-                                <option disabled="" value="">
-                                  Day
-                                </option>
-                                <option className="zr" value="1">
-                                  1
-                                </option>
-                                <option className="zr" value="2">
-                                  2
-                                </option>
-                                <option className="zr" value="3">
-                                  3
-                                </option>
-                                <option className="zr" value="4">
-                                  4
-                                </option>
-                                <option className="zr" value="5">
-                                  5
-                                </option>
-                                <option className="zr" value="6">
-                                  6
-                                </option>
-                                <option className="zr" value="7">
-                                  7
-                                </option>
-                                <option className="zr" value="8">
-                                  8
-                                </option>
-                                <option className="zr" value="9">
-                                  9
-                                </option>
-                                <option className="zr" value="10">
-                                  10
-                                </option>
-                                <option className="zr" value="11">
-                                  11
-                                </option>
-                                <option className="zr" value="12">
-                                  12
-                                </option>
-                                <option className="zr" value="13">
-                                  13
-                                </option>
-                                <option className="zr" value="14">
-                                  14
-                                </option>
-                                <option className="zr" value="15">
-                                  15
-                                </option>
-                                <option className="zr" value="16">
-                                  16
-                                </option>
-                                <option className="zr" value="17">
-                                  17
-                                </option>
-                                <option className="zr" value="18">
-                                  18
-                                </option>
-                                <option className="zr" value="19">
-                                  19
-                                </option>
-                                <option className="zr" value="20">
-                                  20
-                                </option>
-                                <option className="zr" value="21">
-                                  21
-                                </option>
-                                <option className="zr" value="22">
-                                  22
-                                </option>
-                                <option className="zr" value="23">
-                                  23
-                                </option>
-                                <option className="zr" value="24">
-                                  24
-                                </option>
-                                <option className="zr" value="25">
-                                  25
-                                </option>
-                                <option className="zr" value="26">
-                                  26
-                                </option>
-                                <option className="zr" value="27">
-                                  27
-                                </option>
-                                <option className="zr" value="28">
-                                  28
-                                </option>
-                                <option className="zr" value="29">
-                                  29
-                                </option>
-                                <option className="zr" value="30">
-                                  30
-                                </option>
-                                <option className="zr" value="31">
-                                  31
-                                </option>
-                              </select>
-                              <select
-                                name="applicant.0.dob.year"
-                                className="bn v2-small lg:v2-medium hideBackgroundImage"
-                              >
-                                <option disabled="" value="">
-                                  Year
-                                </option>
-                                <option className="zr" value="2024">
-                                  2024
-                                </option>
-                                <option className="zr" value="2023">
-                                  2023
-                                </option>
-                                <option className="zr" value="2022">
-                                  2022
-                                </option>
-                                <option className="zr" value="2021">
-                                  2021
-                                </option>
-                                <option className="zr" value="2020">
-                                  2020
-                                </option>
-                                <option className="zr" value="2019">
-                                  2019
-                                </option>
-                                <option className="zr" value="2018">
-                                  2018
-                                </option>
-                                <option className="zr" value="2017">
-                                  2017
-                                </option>
-                                <option className="zr" value="2016">
-                                  2016
-                                </option>
-                                <option className="zr" value="2015">
-                                  2015
-                                </option>
-                                <option className="zr" value="2014">
-                                  2014
-                                </option>
-                                <option className="zr" value="2013">
-                                  2013
-                                </option>
-                                <option className="zr" value="2012">
-                                  2012
-                                </option>
-                                <option className="zr" value="2011">
-                                  2011
-                                </option>
-                                <option className="zr" value="2010">
-                                  2010
-                                </option>
-                                <option className="zr" value="2009">
-                                  2009
-                                </option>
-                                <option className="zr" value="2008">
-                                  2008
-                                </option>
-                                <option className="zr" value="2007">
-                                  2007
-                                </option>
-                                <option className="zr" value="2006">
-                                  2006
-                                </option>
-                                <option className="zr" value="2005">
-                                  2005
-                                </option>
-                                <option className="zr" value="2004">
-                                  2004
-                                </option>
-                                <option className="zr" value="2003">
-                                  2003
-                                </option>
-                                <option className="zr" value="2002">
-                                  2002
-                                </option>
-                                <option className="zr" value="2001">
-                                  2001
-                                </option>
-                                <option className="zr" value="2000">
-                                  2000
-                                </option>
-                                <option className="zr" value="1999">
-                                  1999
-                                </option>
-                                <option className="zr" value="1998">
-                                  1998
-                                </option>
-                                <option className="zr" value="1997">
-                                  1997
-                                </option>
-                                <option className="zr" value="1996">
-                                  1996
-                                </option>
-                                <option className="zr" value="1995">
-                                  1995
-                                </option>
-                                <option className="zr" value="1994">
-                                  1994
-                                </option>
-                                <option className="zr" value="1993">
-                                  1993
-                                </option>
-                                <option className="zr" value="1992">
-                                  1992
-                                </option>
-                                <option className="zr" value="1991">
-                                  1991
-                                </option>
-                                <option className="zr" value="1990">
-                                  1990
-                                </option>
-                                <option className="zr" value="1989">
-                                  1989
-                                </option>
-                                <option className="zr" value="1988">
-                                  1988
-                                </option>
-                                <option className="zr" value="1987">
-                                  1987
-                                </option>
-                                <option className="zr" value="1986">
-                                  1986
-                                </option>
-                                <option className="zr" value="1985">
-                                  1985
-                                </option>
-                                <option className="zr" value="1984">
-                                  1984
-                                </option>
-                                <option className="zr" value="1983">
-                                  1983
-                                </option>
-                                <option className="zr" value="1982">
-                                  1982
-                                </option>
-                                <option className="zr" value="1981">
-                                  1981
-                                </option>
-                                <option className="zr" value="1980">
-                                  1980
-                                </option>
-                                <option className="zr" value="1979">
-                                  1979
-                                </option>
-                                <option className="zr" value="1978">
-                                  1978
-                                </option>
-                                <option className="zr" value="1977">
-                                  1977
-                                </option>
-                                <option className="zr" value="1976">
-                                  1976
-                                </option>
-                                <option className="zr" value="1975">
-                                  1975
-                                </option>
-                                <option className="zr" value="1974">
-                                  1974
-                                </option>
-                                <option className="zr" value="1973">
-                                  1973
-                                </option>
-                                <option className="zr" value="1972">
-                                  1972
-                                </option>
-                                <option className="zr" value="1971">
-                                  1971
-                                </option>
-                                <option className="zr" value="1970">
-                                  1970
-                                </option>
-                                <option className="zr" value="1969">
-                                  1969
-                                </option>
-                                <option className="zr" value="1968">
-                                  1968
-                                </option>
-                                <option className="zr" value="1967">
-                                  1967
-                                </option>
-                                <option className="zr" value="1966">
-                                  1966
-                                </option>
-                                <option className="zr" value="1965">
-                                  1965
-                                </option>
-                                <option className="zr" value="1964">
-                                  1964
-                                </option>
-                                <option className="zr" value="1963">
-                                  1963
-                                </option>
-                                <option className="zr" value="1962">
-                                  1962
-                                </option>
-                                <option className="zr" value="1961">
-                                  1961
-                                </option>
-                                <option className="zr" value="1960">
-                                  1960
-                                </option>
-                                <option className="zr" value="1959">
-                                  1959
-                                </option>
-                                <option className="zr" value="1958">
-                                  1958
-                                </option>
-                                <option className="zr" value="1957">
-                                  1957
-                                </option>
-                                <option className="zr" value="1956">
-                                  1956
-                                </option>
-                                <option className="zr" value="1955">
-                                  1955
-                                </option>
-                                <option className="zr" value="1954">
-                                  1954
-                                </option>
-                                <option className="zr" value="1953">
-                                  1953
-                                </option>
-                                <option className="zr" value="1952">
-                                  1952
-                                </option>
-                                <option className="zr" value="1951">
-                                  1951
-                                </option>
-                                <option className="zr" value="1950">
-                                  1950
-                                </option>
-                                <option className="zr" value="1949">
-                                  1949
-                                </option>
-                                <option className="zr" value="1948">
-                                  1948
-                                </option>
-                                <option className="zr" value="1947">
-                                  1947
-                                </option>
-                                <option className="zr" value="1946">
-                                  1946
-                                </option>
-                                <option className="zr" value="1945">
-                                  1945
-                                </option>
-                                <option className="zr" value="1944">
-                                  1944
-                                </option>
-                                <option className="zr" value="1943">
-                                  1943
-                                </option>
-                                <option className="zr" value="1942">
-                                  1942
-                                </option>
-                                <option className="zr" value="1941">
-                                  1941
-                                </option>
-                                <option className="zr" value="1940">
-                                  1940
-                                </option>
-                                <option className="zr" value="1939">
-                                  1939
-                                </option>
-                                <option className="zr" value="1938">
-                                  1938
-                                </option>
-                                <option className="zr" value="1937">
-                                  1937
-                                </option>
-                                <option className="zr" value="1936">
-                                  1936
-                                </option>
-                                <option className="zr" value="1935">
-                                  1935
-                                </option>
-                                <option className="zr" value="1934">
-                                  1934
-                                </option>
-                                <option className="zr" value="1933">
-                                  1933
-                                </option>
-                                <option className="zr" value="1932">
-                                  1932
-                                </option>
-                                <option className="zr" value="1931">
-                                  1931
-                                </option>
-                                <option className="zr" value="1930">
-                                  1930
-                                </option>
-                                <option className="zr" value="1929">
-                                  1929
-                                </option>
-                                <option className="zr" value="1928">
-                                  1928
-                                </option>
-                                <option className="zr" value="1927">
-                                  1927
-                                </option>
-                                <option className="zr" value="1926">
-                                  1926
-                                </option>
-                                <option className="zr" value="1925">
-                                  1925
-                                </option>
-                                <option className="zr" value="1924">
-                                  1924
-                                </option>
-                                <option className="zr" value="1923">
-                                  1923
-                                </option>
-                                <option className="zr" value="1922">
-                                  1922
-                                </option>
-                                <option className="zr" value="1921">
-                                  1921
-                                </option>
-                                <option className="zr" value="1920">
-                                  1920
-                                </option>
-                                <option className="zr" value="1919">
-                                  1919
-                                </option>
-                                <option className="zr" value="1918">
-                                  1918
-                                </option>
-                                <option className="zr" value="1917">
-                                  1917
-                                </option>
-                                <option className="zr" value="1916">
-                                  1916
-                                </option>
-                                <option className="zr" value="1915">
-                                  1915
-                                </option>
-                                <option className="zr" value="1914">
-                                  1914
-                                </option>
-                              </select>
+                    <div className="yu bvh bok bpi ta tj">
+                      <div className="ho boo col-12">
+                        <div
+                          data-ivisa-slug="first_name"
+                          data-ivisa-question-selector="applicant.0.first_name"
+                          className=""
+                        >
+                          <div className="">
+                            <label className="by jt pr v2-space-x-8">
+                              <span>First and middle name</span>
+                            </label>
+                            <div className="dq">
+                              <input
+                                className="bn v2-small lg:v2-medium"
+                                name="applicant.0.first_name"
+                                required={true}
+                                placeholder="John William"
+                                spellCheck={false}
+                                autoComplete="given-name"
+                                type="text"
+                              />
+                              <span className="dp ei bmv en od">
+                                <div className="js bac">
+                                  <svg
+                                    className="me kg "
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 32 32"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
+                                      fill="currentColor"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              </span>
+                            </div>
+                            <div className="bdm ji bpu bab bu">
+                              <span>
+                                If you have a middle name, please include it.
+                              </span>
                             </div>
                           </div>
-                          <span className="dp ei bmv en od">
-                            <div className="js bac">
-                              <svg
-                                className="me kg "
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                  fill="currentColor"
-                                ></path>
-                              </svg>
+                        </div>
+                      </div>
+                      <div className="ho boo col-12">
+                        <div
+                          data-ivisa-slug="last_name"
+                          data-ivisa-question-selector="applicant.0.last_name"
+                          className=""
+                        >
+                          <div className="">
+                            <label className="by jt pr v2-space-x-8">
+                              <span>Last name</span>
+                            </label>
+                            <div className="dq">
+                              <input
+                                className="bn v2-small lg:v2-medium"
+                                name="applicant.0.last_name"
+                                required=""
+                                placeholder="Smith"
+                                spellCheck={false}
+                                autoComplete="family-name"
+                                type="text"
+                              />
+                              <span className="dp ei bmv en od">
+                                <div className="js bac">
+                                  <svg
+                                    className="me kg "
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 32 32"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
+                                      fill="currentColor"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              </span>
                             </div>
-                          </span>
+                            <div className="bdm ji bpu bab bu">
+                              <span>
+                                If your last name is hyphenated, use a space
+                                instead of a hyphen. For example, if your last
+                                name is Williams-Smith, enter “Williams Smith.”
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="ho boo col-12">
+                        <div
+                          data-ivisa-slug="dob"
+                          data-ivisa-question-selector="applicant.0.dob"
+                          className=""
+                        >
+                          <div className="">
+                            <label className="by jt pr v2-space-x-8">
+                              <span>Date of birth</span>
+                            </label>
+                            <div className="dq">
+                              <div type="date" className="sm vu">
+                                <div className="jt pr">
+                                  <select
+                                    name="applicant.0.dob.month"
+                                    className="bn v2-small lg:v2-medium iz bpf"
+                                    autoComplete="bday-month"
+                                  >
+                                    <option disabled="" value="">
+                                      Month
+                                    </option>
+                                    {months.map((month, index) => (
+                                      <option
+                                        className="zr"
+                                        key={month}
+                                        value={index + 1}
+                                      >
+                                        {month}
+                                      </option>
+                                    ))}
+                                  </select>
+                                  <select
+                                    name="applicant.0.dob.day"
+                                    className="bn v2-small lg:v2-medium iz bpf"
+                                    autoComplete="bday-day"
+                                  >
+                                    <option disabled="" value="">
+                                      Day
+                                    </option>
+                                    {days.map((day) => (
+                                      <option
+                                        className="zr"
+                                        disabled=""
+                                        value={day}
+                                        key={day}
+                                      >
+                                        {day}
+                                      </option>
+                                    ))}
+                                  </select>
+                                  <select
+                                    name="applicant.0.dob.year"
+                                    className="bn v2-small lg:v2-medium hideBackgroundImage"
+                                  >
+                                    <option disabled="" value="">
+                                      Year
+                                    </option>
+                                    {years.map((year) => (
+                                      <option
+                                        disabled=""
+                                        key={year}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                              </div>
+                              <span className="dp ei bmv en od">
+                                <div className="js bac">
+                                  <svg
+                                    className="me kg "
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 32 32"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
+                                      fill="currentColor"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))}
               <div className="jh" data-handle="add-traveler">
                 <div className="bqd">
-                  <button className="cg cj co cs dq">
+                  <button
+                    className="cg cj co cs dq"
+                    onClick={() => setNumOfTravelers((prev) => prev + 1)}
+                  >
                     <div className="js">
                       <svg
                         className="me kg iz disabled:hover:v2-text-gray-300"
@@ -923,7 +514,10 @@ function StepThreeA() {
                   </button>
                 </div>
                 <div className="jy bpx">
-                  <button className="cg cj cn cs dq">
+                  <button
+                    className="cg cj cn cs dq"
+                    onClick={() => setNumOfTravelers((prev) => prev + 1)}
+                  >
                     <div className="js">
                       <svg
                         className="mj kj iz disabled:hover:v2-text-gray-300"
@@ -947,12 +541,13 @@ function StepThreeA() {
               id="btnContinueUnderSection"
               className="btnContinue jy bpx brs ng bne"
             >
-              <button
+              <HashLink
+                to={"#step=step_2b"}
+                state={{ form_heading: heading }}
                 className="cg ch cn ct cx dq"
-                onClick={() => navigate(`/a/${destination}/step=step_3`)}
               >
                 <span className="">Continue</span>
-              </button>
+              </HashLink>
             </div>
           </div>
         </div>
@@ -992,13 +587,14 @@ function StepThreeA() {
                 </div>
               </div>
               <div className="v2-space-y-24 jg">
-                <button
+                <HashLink
+                  to={"#step=step_2b"}
+                  state={{ form_heading: heading }}
                   className="cg ch cn cs cx dq btnContinue"
                   id="btnContinueSidebar"
-                  onClick={() => navigate(`/a/${destination}/step=step_3`)}
                 >
                   <span className="">Save and continue</span>
-                </button>
+                </HashLink>
                 <div>
                   <div className="bac bdm">
                     <div className="jt pr">
@@ -1060,18 +656,19 @@ function StepThreeA() {
                 <div className="bcu">Total</div>
                 <div className="bcv">Calculated at checkout</div>
               </div>
-              <button
+              <HashLink
+                to={"#step=step_2b"}
+                state={{ form_heading: heading }}
                 className="cg ch co cu cx dq btnContinue"
                 id="btnContinueUnderSectionMobile"
-                onClick={() => navigate(`/a/${destination}/step=step_3`)}
               >
                 <span className="">Continue</span>
-              </button>
+              </HashLink>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

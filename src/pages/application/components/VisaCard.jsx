@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 // import { useOutletContext } from "react-router-dom";
 
-function VisaCard({ cardDetails, handleClick }) {
+import { HashLink } from "react-router-hash-link";
+
+function VisaCard({ cardDetails, heading }) {
   const { name, visa_validity, number_of_entries } = cardDetails;
   // console.log("details: ", cardDetails);
   const visaValidity = `${
@@ -83,10 +85,12 @@ function VisaCard({ cardDetails, handleClick }) {
               </div>
             </div>
             <div className="bjf bkg">
-              <button
+              <HashLink
+                to={"#step=step_1"}
+                state={{ form_heading: heading }}
                 className="pd ph pm pp qm"
                 data-handle="vt-5085"
-                onClick={handleClick}
+                // onClick={handleClick}
               >
                 <span className="">Start now</span>
                 <div className="wn">
@@ -128,7 +132,7 @@ function VisaCard({ cardDetails, handleClick }) {
                     </g>
                   </svg>
                 </div>
-              </button>
+              </HashLink>
             </div>
           </div>
         </div>

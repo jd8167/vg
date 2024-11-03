@@ -1,35 +1,49 @@
+/* eslint-disable react/prop-types */
 import { Helmet } from "react-helmet";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { capitalizeFirstLetter } from "../../utils";
-function SecondStep() {
+import { HashLink } from "react-router-hash-link";
+
+function SecondStep({ isCurrentStep, heading, hasHash }) {
   const { destination } = useParams();
-  const navigate = useNavigate();
   const [selected, setSelected] = useState(new Date());
-  const { visaHeading } = useOutletContext();
+  // const { visaHeading } = useOutletContext();
 
   return (
     <>
-      <Helmet>
-        <link
-          rel="preload"
-          as="style"
-          href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
-        ></link>
-        <link
-          rel="stylesheet"
-          href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
-        ></link>
-      </Helmet>
-      <div className="s bhx" id="step=step_1">
+      {hasHash && (
+        <Helmet>
+          <link
+            rel="preload"
+            as="style"
+            href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
+          ></link>
+          <link
+            rel="stylesheet"
+            href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
+          ></link>
+          <title>Visa Application Form</title>
+          <meta
+            name="description"
+            content={`Get your visa for ${destination} Now and skip the line at the airport! Fill out our easy online Form and get your Visa. Fast and Reliable. 24/7 Customer Support!`}
+          ></meta>
+        </Helmet>
+      )}
+      <div
+        className="s bhx"
+        id="step=step_1"
+        style={{ display: !isCurrentStep ? "none" : "block" }}
+      >
         <div className="fq" style={{ marginBottom: "230px" }}>
           <div className="bhw">
             <div>
               <h1 className="bcj bmi bvv bac wy bln">
                 <span>
                   {/* Australia Visitor Visa • 1 year, Multiple entry {" "} */}
-                  {visaHeading}
+                  {/* {visaHeading} */}
+                  {heading}
                 </span>
               </h1>
             </div>
@@ -282,12 +296,14 @@ function SecondStep() {
                   id="btnContinueUnderSection"
                   className="btnContinue jy bpx brs ng bne"
                 >
-                  <button
+                  <HashLink
+                    to={"#step=step_2"}
+                    state={{ form_heading: heading }}
                     className="cg ch cn ct cx dq"
-                    onClick={() => navigate(`/a/${destination}/step=step_2`)}
+                    // onClick={() => navigate(`/a/${destination}/step=step_2`)}
                   >
                     <span className="">Continue</span>
-                  </button>
+                  </HashLink>
                 </div>
               </div>
             </div>
@@ -326,13 +342,15 @@ function SecondStep() {
                     </div>
                   </div>
                   <div className="v2-space-y-24 jg">
-                    <button
+                    <HashLink
+                      state={{ form_heading: heading }}
+                      to={"#step=step_2"}
                       className="cg ch cn cs cx dq btnContinue"
                       id="btnContinueSidebar"
-                      onClick={() => navigate(`/a/${destination}/step=step_2`)}
+                      // onClick={() => navigate(`/a/${destination}/step=step_2`)}
                     >
                       <span className="">Save and continue</span>
-                    </button>
+                    </HashLink>
                     <div>
                       <div className="bac bdm">
                         <div className="jt pr">
@@ -394,14 +412,15 @@ function SecondStep() {
                     <div className="bcu">Total</div>
                     <div className="bcv">Calculated at checkout</div>
                   </div>
-                  <button
+                  <HashLink
+                    state={{ form_heading: heading }}
+                    to={"#step=step_2"}
                     className="cg ch co cu cx dq btnContinue"
                     id="btnContinueUnderSectionMobile"
-                    onClick={() => navigate(`/a/${destination}/step=step_2`)}
-                    // onClick={() => navigate(`step=step_2`)}
+                    // onClick={() => navigate(`/a/${destination}/step=step_2`)}
                   >
                     <span className="">Continue</span>
-                  </button>
+                  </HashLink>
                 </div>
               </div>
             </div>

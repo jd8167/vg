@@ -1,30 +1,32 @@
+/* eslint-disable react/prop-types */
 import { Helmet } from "react-helmet";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
-function StepFour() {
-  const navigate = useNavigate();
-  const { visaHeading } = useOutletContext();
-  const { destination } = useParams();
-
+function StepFour({ isCurrentStep, heading }) {
   return (
     <>
-      <Helmet>
-        <link
-          rel="preload"
-          as="style"
-          href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
-        ></link>
-        <link
-          rel="stylesheet"
-          href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
-        ></link>
-      </Helmet>
-      <div className="s bhx">
+      {isCurrentStep && (
+        <Helmet>
+          <link
+            rel="preload"
+            as="style"
+            href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
+          ></link>
+          <link
+            rel="stylesheet"
+            href="https://d3o7lrr6ovj0yv.cloudfront.net/build/assets/app-BBJJsEWP-b01ec469.css"
+          ></link>
+        </Helmet>
+      )}
+      <div
+        className="s bhx"
+        style={{ display: !isCurrentStep ? "none" : "block" }}
+      >
         <div className="fq" style={{ marginBottom: "230px" }}>
           <div className="bhw">
             <div>
               <h1 className="bcj bmi bvv bac wy bln">
-                <span>{visaHeading}</span>
+                <span>{heading}</span>
               </h1>
             </div>
           </div>
@@ -399,13 +401,14 @@ function StepFour() {
                     </div>
                   </div>
                   <div className="v2-space-y-24 jg">
-                    <button
+                    <HashLink
+                      to={"#step=review"}
+                      state={{ form_heading: heading }}
                       className="cg ch cn cs cx dq btnContinue"
                       id="btnContinueSidebar"
-                      onClick={() => navigate(`/a/${destination}/step=review`)}
                     >
                       <span className="">Save and continue</span>
-                    </button>
+                    </HashLink>
                     <div>
                       <div className="bac bdm">
                         <div className="jt pr">
@@ -467,13 +470,14 @@ function StepFour() {
                     <div className="bcu">Total</div>
                     <div className="bcv">Calculated at checkout</div>
                   </div>
-                  <button
+                  <HashLink
+                    to={"#step=review"}
+                    state={{ form_heading: heading }}
                     className="cg ch co cu cx dq btnContinue"
                     id="btnContinueUnderSectionMobile"
-                    onClick={() => navigate(`/a/${destination}/step=review`)}
                   >
                     <span className="">Continue</span>
-                  </button>
+                  </HashLink>
                 </div>
               </div>
             </div>
