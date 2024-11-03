@@ -1,0 +1,166 @@
+/* .main {
+  @media screen and (min-width: 1200px) {
+    margin-top: 100px;
+  }
+} */
+
+.breadcrumbs {
+  padding-top: 24px;
+  font-size: 0.75rem;
+  line-height: 16px;
+  color: rgb(121, 148, 155);
+  padding: 4px 0;
+  margin-bottom: 8px;
+  margin-inline: 24px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 64px;
+    margin-inline: 48px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 120px;
+  }
+
+  & span + span {
+    font-weight: 700;
+  }
+}
+
+.heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 28px;
+  padding-bottom: 16px;
+  color: rgb(11, 57, 71);
+  margin-inline: 24px;
+
+  /* layout style */
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 40px;
+    padding-bottom: 24px;
+    margin-inline: 48px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 120px;
+  }
+
+  max-width: 1312px;
+}
+
+.accountLink {
+  width: fit-content;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 60px;
+  }
+
+  & a {
+    color: rgb(57, 79, 225);
+    display: flex;
+    align-items: center;
+
+    @media screen and (min-width: 1200px) {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 16px;
+    }
+
+    &:visited,
+    &:active {
+      text-decoration: none;
+    }
+
+    & > svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+
+    & > span {
+      margin-left: 8px;
+    }
+  }
+}
+
+.emptyContent {
+  margin-top: 32px;
+  margin-bottom: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 120px;
+  }
+
+  & > svg {
+    color: rgb(213, 225, 226);
+    width: 64px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  & > h2 {
+    color: rgb(121, 148, 155);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 28px;
+    margin-bottom: 8px;
+
+    @media screen and (min-width: 1200px) {
+      font-size: 1.5rem;
+      line-height: 32px;
+    }
+
+    & + p {
+      font-size: 0.875rem;
+      line-height: 24px;
+      color: rgb(121, 148, 155);
+      text-align: center;
+      margin-bottom: 24px;
+
+      @media screen and (min-width: 1200px) {
+        margin-bottom: 32px;
+        font-size: 1rem;
+        line-height: 28px;
+      }
+    }
+  }
+}
+
+.btt {
+  @media screen and (min-width: 1200px) {
+    /* display: none; */
+    width: auto;
+  }
+
+  & a {
+    width: 100%;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 16px;
+    background-color: #fff;
+    outline-width: 1px;
+    outline-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    color: #000;
+    outline-style: solid;
+    cursor: pointer;
+
+    @media screen and (min-width: 1200px) {
+      padding: 16px 40px;
+      font-size: 1.125rem;
+      line-height: 24px;
+    }
+  }
+}
