@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
-// import { useNavigate, useParams } from "react-router-dom";
 import { days, months, years } from "../../data";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import TrashIcon from "../../components/TrashIcon";
+import CheckMarkIcon from "../../components/CheckMarkIcon";
 
-function StepThreeA({ isCurrentStep, heading }) {
-  // const { visaHeading } = useOutletContext();
-  // const { destination } = useParams();
-  const [numOfTravelers, setNumOfTravelers] = useState(1);
+function StepThreeA({
+  isCurrentStep,
+  heading,
+  updateVisaApplicationDetails,
+  visaApplicationDetails,
+}) {
+  const navigate = useNavigate();
 
   return (
     <div
@@ -292,212 +296,272 @@ function StepThreeA({ isCurrentStep, heading }) {
             </div>
             {/* end of form error element feedback */}
             <div>
-              {Array(numOfTravelers)
-                .fill()
-                .map((_, index) => (
-                  <div className="" key={index}>
-                    <div className="ng jt pr pw ia bol">
-                      <span className="bac bvy bcj">{`${
-                        index < 1
-                          ? "Your Personal Details"
-                          : "Traveler #" + numOfTravelers + " Personal Details"
-                      }`}</span>
-                    </div>
-                    <div>
-                      <p className="">
-                        These should match what&apos;s in your passport.
-                      </p>
-                    </div>
-                    <div className="yu bvh bok bpi ta tj">
-                      <div className="ho boo col-12">
-                        <div
-                          data-ivisa-slug="first_name"
-                          data-ivisa-question-selector="applicant.0.first_name"
-                          className=""
-                        >
-                          <div className="">
-                            <label className="by jt pr v2-space-x-8">
-                              <span>First and middle name</span>
-                            </label>
-                            <div className="dq">
-                              <input
-                                className="bn v2-small lg:v2-medium"
-                                name="applicant.0.first_name"
-                                required={true}
-                                placeholder="John William"
-                                spellCheck={false}
-                                autoComplete="given-name"
-                                type="text"
-                              />
-                              <span className="dp ei bmv en od">
-                                <div className="js bac">
-                                  <svg
-                                    className="me kg "
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 32 32"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
-                                </div>
-                              </span>
-                            </div>
-                            <div className="bdm ji bpu bab bu">
-                              <span>
-                                If you have a middle name, please include it.
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ho boo col-12">
-                        <div
-                          data-ivisa-slug="last_name"
-                          data-ivisa-question-selector="applicant.0.last_name"
-                          className=""
-                        >
-                          <div className="">
-                            <label className="by jt pr v2-space-x-8">
-                              <span>Last name</span>
-                            </label>
-                            <div className="dq">
-                              <input
-                                className="bn v2-small lg:v2-medium"
-                                name="applicant.0.last_name"
-                                required=""
-                                placeholder="Smith"
-                                spellCheck={false}
-                                autoComplete="family-name"
-                                type="text"
-                              />
-                              <span className="dp ei bmv en od">
-                                <div className="js bac">
-                                  <svg
-                                    className="me kg "
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 32 32"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
-                                </div>
-                              </span>
-                            </div>
-                            <div className="bdm ji bpu bab bu">
-                              <span>
-                                If your last name is hyphenated, use a space
-                                instead of a hyphen. For example, if your last
-                                name is Williams-Smith, enter “Williams Smith.”
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ho boo col-12">
-                        <div
-                          data-ivisa-slug="dob"
-                          data-ivisa-question-selector="applicant.0.dob"
-                          className=""
-                        >
-                          <div className="">
-                            <label className="by jt pr v2-space-x-8">
-                              <span>Date of birth</span>
-                            </label>
-                            <div className="dq">
-                              <div type="date" className="sm vu">
-                                <div className="jt pr">
-                                  <select
-                                    name="applicant.0.dob.month"
-                                    className="bn v2-small lg:v2-medium iz bpf"
-                                    autoComplete="bday-month"
-                                  >
-                                    <option disabled="" value="">
-                                      Month
-                                    </option>
-                                    {months.map((month, index) => (
-                                      <option
-                                        className="zr"
-                                        key={month}
-                                        value={index + 1}
-                                      >
-                                        {month}
-                                      </option>
-                                    ))}
-                                  </select>
-                                  <select
-                                    name="applicant.0.dob.day"
-                                    className="bn v2-small lg:v2-medium iz bpf"
-                                    autoComplete="bday-day"
-                                  >
-                                    <option disabled="" value="">
-                                      Day
-                                    </option>
-                                    {days.map((day) => (
-                                      <option
-                                        className="zr"
-                                        disabled=""
-                                        value={day}
-                                        key={day}
-                                      >
-                                        {day}
-                                      </option>
-                                    ))}
-                                  </select>
-                                  <select
-                                    name="applicant.0.dob.year"
-                                    className="bn v2-small lg:v2-medium hideBackgroundImage"
-                                  >
-                                    <option disabled="" value="">
-                                      Year
-                                    </option>
-                                    {years.map((year) => (
-                                      <option
-                                        disabled=""
-                                        key={year}
-                                        value={year}
-                                      >
-                                        {year}
-                                      </option>
-                                    ))}
-                                  </select>
-                                </div>
+              {visaApplicationDetails.travelers.map((_, index) => (
+                <div className="" key={index} data-id={index}>
+                  <div className="ng jt pr pw ia bol">
+                    <span className="bac bvy bcj">{`${
+                      index < 1
+                        ? "Your Personal Details"
+                        : "Traveler #" + (index + 1) + " " + " Personal Details"
+                    }`}</span>
+                    {index !== 0 && (
+                      <TrashIcon
+                        handleClick={() =>
+                          updateVisaApplicationDetails((draft) => {
+                            draft.travelers = draft.travelers.filter(
+                              (_, i) => i !== index
+                            );
+                          })
+                        }
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <p className="">
+                      These should match what&apos;s in your passport.
+                    </p>
+                  </div>
+                  <div className="yu bvh bok bpi ta tj">
+                    <div className="ho boo col-12">
+                      <div
+                        data-ivisa-slug="first_name"
+                        data-ivisa-question-selector="applicant.0.first_name"
+                        className=""
+                      >
+                        <div className="">
+                          <label className="by jt pr v2-space-x-8">
+                            <span>First and middle name</span>
+                          </label>
+                          <div className="dq">
+                            <input
+                              className="bn v2-small lg:v2-medium"
+                              name="applicant.0.first_name"
+                              required={true}
+                              onBlur={(e) => {
+                                updateVisaApplicationDetails((draft) => {
+                                  draft.travelers[index].first_name =
+                                    e.target.value;
+                                });
+                              }}
+                              placeholder="John William"
+                              spellCheck={false}
+                              autoComplete="given-name"
+                              type="text"
+                            />
+                            {/* <span className="dp ei bmv en od">
+                              <div className="js bac">
+                                <svg
+                                  className="me kg "
+                                  width="32"
+                                  height="32"
+                                  viewBox="0 0 32 32"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
+                                    fill="currentColor"
+                                  ></path>
+                                </svg>
                               </div>
-                              <span className="dp ei bmv en od">
-                                <div className="js bac">
-                                  <svg
-                                    className="me kg "
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 32 32"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
-                                </div>
-                              </span>
+                            </span> */}
+                            {visaApplicationDetails.travelers[index]
+                              .first_name && <CheckMarkIcon />}
+                          </div>
+                          <div className="bdm ji bpu bab bu">
+                            <span>
+                              If you have a middle name, please include it.
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ho boo col-12">
+                      <div
+                        data-ivisa-slug="last_name"
+                        data-ivisa-question-selector="applicant.0.last_name"
+                        className=""
+                      >
+                        <div className="">
+                          <label className="by jt pr v2-space-x-8">
+                            <span>Last name</span>
+                          </label>
+                          <div className="dq">
+                            <input
+                              className="bn v2-small lg:v2-medium"
+                              name="applicant.0.last_name"
+                              required={true}
+                              placeholder="Smith"
+                              spellCheck={false}
+                              onBlur={(e) =>
+                                updateVisaApplicationDetails((draft) => {
+                                  draft.travelers[index].last_name =
+                                    e.target.value;
+                                })
+                              }
+                              autoComplete="family-name"
+                              type="text"
+                            />
+                            {visaApplicationDetails.travelers[index]
+                              .last_name && <CheckMarkIcon />}
+                          </div>
+                          <div className="bdm ji bpu bab bu">
+                            <span>
+                              If your last name is hyphenated, use a space
+                              instead of a hyphen. For example, if your last
+                              name is Williams-Smith, enter “Williams Smith.”
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ho boo col-12">
+                      <div
+                        data-ivisa-slug="dob"
+                        data-ivisa-question-selector="applicant.0.dob"
+                        className=""
+                      >
+                        <div className="">
+                          <label className="by jt pr v2-space-x-8">
+                            <span>Date of birth</span>
+                          </label>
+                          <div className="dq">
+                            <div type="date" className="sm vu">
+                              <div className="jt pr">
+                                <select
+                                  name="applicant.0.dob.month"
+                                  className="bn v2-small lg:v2-medium iz bpf"
+                                  autoComplete="bday-month"
+                                  value={
+                                    visaApplicationDetails.travelers[index].dob
+                                      .month
+                                  }
+                                  onChange={(e) =>
+                                    updateVisaApplicationDetails((draft) => {
+                                      draft.travelers[index].dob.month =
+                                        e.target.value;
+                                    })
+                                  }
+                                >
+                                  <option disabled="" value="">
+                                    Month
+                                  </option>
+                                  {months.map((month, index) => (
+                                    <option
+                                      className="zr"
+                                      key={month}
+                                      value={index + 1}
+                                    >
+                                      {month}
+                                    </option>
+                                  ))}
+                                </select>
+                                <select
+                                  name="applicant.0.dob.day"
+                                  className="bn v2-small lg:v2-medium iz bpf"
+                                  autoComplete="bday-day"
+                                  value={
+                                    visaApplicationDetails.travelers[index].dob
+                                      .day
+                                  }
+                                  onChange={(e) =>
+                                    updateVisaApplicationDetails((draft) => {
+                                      draft.travelers[index].dob.day =
+                                        e.target.value;
+                                    })
+                                  }
+                                >
+                                  <option disabled="" value="">
+                                    Day
+                                  </option>
+                                  {days.map((day) => (
+                                    <option
+                                      className="zr"
+                                      disabled=""
+                                      value={day}
+                                      key={day}
+                                    >
+                                      {day}
+                                    </option>
+                                  ))}
+                                  <CheckMarkIcon />
+                                </select>
+                                <select
+                                  name="applicant.0.dob.year"
+                                  className={`bn v2-small lg:v2-medium ${
+                                    !visaApplicationDetails.travelers[index].dob
+                                      .year ||
+                                    !visaApplicationDetails.travelers[index].dob
+                                      .month ||
+                                    !visaApplicationDetails.travelers[index].dob
+                                      .day
+                                      ? ""
+                                      : "hideBackgroundImage"
+                                  } `}
+                                  value={
+                                    visaApplicationDetails.travelers[index].dob
+                                      .year
+                                  }
+                                  onChange={(e) =>
+                                    updateVisaApplicationDetails((draft) => {
+                                      draft.travelers[index].dob.year =
+                                        e.target.value;
+                                    })
+                                  }
+                                >
+                                  <option disabled="" value="">
+                                    Year
+                                  </option>
+                                  {years.map((year) => (
+                                    <option disabled="" key={year} value={year}>
+                                      {year}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
                             </div>
+                            <span className="dp ei bmv en od">
+                              <div className="js bac">
+                                <svg
+                                  className="me kg "
+                                  width="32"
+                                  height="32"
+                                  viewBox="0 0 32 32"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
+                                    fill="currentColor"
+                                  ></path>
+                                </svg>
+                              </div>
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
               <div className="jh" data-handle="add-traveler">
                 <div className="bqd">
                   <button
                     className="cg cj co cs dq"
-                    onClick={() => setNumOfTravelers((prev) => prev + 1)}
+                    onClick={() =>
+                      updateVisaApplicationDetails((draft) => {
+                        draft.travelers.push({
+                          first_name: "",
+                          last_name: "",
+                          dob: { day: "", month: "", year: "" },
+                          nationality_country: "",
+                          birth_country: "",
+                          home_country: null,
+                          passport_issued_country: null,
+                          passport_num: null,
+                          passport_issued_date: null,
+                          passport_expiration_date: null,
+                        });
+                      })
+                    }
                   >
                     <div className="js">
                       <svg
@@ -516,7 +580,22 @@ function StepThreeA({ isCurrentStep, heading }) {
                 <div className="jy bpx">
                   <button
                     className="cg cj cn cs dq"
-                    onClick={() => setNumOfTravelers((prev) => prev + 1)}
+                    onClick={() =>
+                      updateVisaApplicationDetails((draft) => {
+                        draft.travelers.push({
+                          first_name: "",
+                          last_name: "",
+                          dob: { day: "", month: "", year: "" },
+                          nationality_country: "",
+                          birth_country: "",
+                          home_country: null,
+                          passport_issued_country: null,
+                          passport_num: null,
+                          passport_issued_date: null,
+                          passport_expiration_date: null,
+                        });
+                      })
+                    }
                   >
                     <div className="js">
                       <svg
@@ -560,18 +639,18 @@ function StepThreeA({ isCurrentStep, heading }) {
                     <ul className="vu ow oy ns">
                       <li className="bdk">Australia Visitor Visa</li>
                     </ul>
-                    <p className="bdm nf rq">1 Traveler</p>
+                    <p className="bdm nf rq">
+                      {visaApplicationDetails.travelers.length > 1
+                        ? visaApplicationDetails.travelers.length + " Travelers"
+                        : visaApplicationDetails.travelers.length + " Traveler"}
+                    </p>
                   </div>
                   <div>
                     <div className="jt pw bdi ql ia">
                       <span className="ns">+ Government fees</span>
-                      <span className="bac nf rq">₦ 224926.00</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="jt pw bdi ql">
-                      <span className="ns">+ Standard</span>
-                      <span className="bac nf rq">₦ 965434.30</span>
+                      <span className="bac nf rq">
+                        ₦ {224926.0 * visaApplicationDetails.travelers.length}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -626,6 +705,7 @@ function StepThreeA({ isCurrentStep, heading }) {
                 <div
                   className="zw bcr jt v2-space-x-8 pr or bey btnPrevious"
                   id="btnPreviousSidebar"
+                  onClick={() => navigate(-1)}
                 >
                   <div className="js">
                     <svg

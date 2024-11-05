@@ -1222,3 +1222,16 @@ export const months = [
   "November",
   "December",
 ];
+
+export const firstQuestions = [
+  "No, I haven't left my home country",
+  "Yes, in the last 5 years, I have traveled out of my home country and returned.",
+  "Yes, in the last 5 years, I have traveled or have a visa for at least 1 of these countries - USA, Canada, Australia, UK, all Schengen countries.",
+];
+
+export const secondQuestionAnswers = [
+  "No",
+  "Yes",
+  "I was denied this visa less than 12 months ago.",
+  "I was denied this visa over 12 months ago",
+];

@@ -1,15 +1,21 @@
 /* eslint-disable react/prop-types */
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { capitalizeFirstLetter } from "../../utils";
 import { HashLink } from "react-router-hash-link";
-
-function SecondStep({ isCurrentStep, heading, hasHash }) {
+import CheckMarkIcon from "../../components/CheckMarkIcon";
+import CalenderIcon from "../../components/CalenderIcon";
+// TODO: make the icon calender swap to checkmark on all inputs (:150)
+function SecondStep({
+  isCurrentStep,
+  heading,
+  hasHash,
+  updateVisaApplicationDetails,
+  visaApplicationDetails,
+}) {
   const { destination } = useParams();
-  const [selected, setSelected] = useState(new Date());
-  // const { visaHeading } = useOutletContext();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -129,8 +135,16 @@ function SecondStep({ isCurrentStep, heading, hasHash }) {
                                       value="12/04/2024"
                                     /> */}
                                     <DatePicker
-                                      selected={selected}
-                                      onChange={(date) => setSelected(date)}
+                                      selected={
+                                        visaApplicationDetails.arrival_date
+                                      }
+                                      onChange={(date) =>
+                                        updateVisaApplicationDetails(
+                                          (draft) => {
+                                            draft.arrival_date = date;
+                                          }
+                                        )
+                                      }
                                       className="bn v2-small lg:v2-medium w-full"
                                       monthsShown={2}
                                       // popperClassName=" bg-yellow-400"
@@ -139,7 +153,12 @@ function SecondStep({ isCurrentStep, heading, hasHash }) {
                                   <div className="cat">{/* trying */}</div>
                                 </div>
                               </div>
-                              <span className="dp ei bmv en od">
+                              {!visaApplicationDetails.arrival_date ? (
+                                <CalenderIcon />
+                              ) : (
+                                <CheckMarkIcon />
+                              )}
+                              {/* <span className="dp ei bmv en od">
                                 <div className="js bac">
                                   <svg
                                     className="me kg "
@@ -154,7 +173,7 @@ function SecondStep({ isCurrentStep, heading, hasHash }) {
                                     ></path>
                                   </svg>
                                 </div>
-                              </span>
+                              </span> */}
                             </div>
                           </div>
                         </div>
@@ -223,28 +242,21 @@ function SecondStep({ isCurrentStep, heading, hasHash }) {
                               <input
                                 className="bn v2-small lg:v2-medium"
                                 name="general.email"
-                                required=""
+                                value={visaApplicationDetails.email}
+                                onChange={(e) =>
+                                  updateVisaApplicationDetails((draft) => {
+                                    draft.email = e.target.value;
+                                  })
+                                }
+                                required={true}
                                 placeholder="johnsmith@gmail.com"
                                 spellCheck="false"
                                 autoComplete="on"
                                 type="email"
                               />
-                              <span className="dp ei bmv en od">
-                                <div className="js bac">
-                                  <svg
-                                    className="me kg "
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 32 32"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M24.9333 9.6C24.4 9.06667 23.6 9.06667 23.0666 9.6L13.0666 19.6L8.93329 15.4667C8.39996 14.9333 7.59996 14.9333 7.06663 15.4667C6.53329 16 6.53329 16.8 7.06663 17.3333L12.1333 22.4C12.4 22.6667 12.6666 22.8 13.0666 22.8C13.4666 22.8 13.7333 22.6667 14 22.4L24.9333 11.4667C25.4666 10.9333 25.4666 10.1333 24.9333 9.6Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
-                                </div>
-                              </span>
+                              {!visaApplicationDetails.email ? null : (
+                                <CheckMarkIcon />
+                              )}
                             </div>
                             <div className="bdm ji bpu bab bu">
                               <span>
@@ -323,12 +335,6 @@ function SecondStep({ isCurrentStep, heading, hasHash }) {
                           <span className="bac nf rq">₦ 224926.00</span>
                         </div>
                       </div>
-                      <div>
-                        <div className="jt pw bdi ql">
-                          <span className="ns">+ Standard</span>
-                          <span className="bac nf rq">₦ 965434.30</span>
-                        </div>
-                      </div>
                     </div>
                     <div className="wl bac">
                       <div className="jt pw bcm">
@@ -382,6 +388,7 @@ function SecondStep({ isCurrentStep, heading, hasHash }) {
                     <div
                       className="zw bcr jt v2-space-x-8 pr or bey btnPrevious"
                       id="btnPreviousSidebar"
+                      onClick={() => navigate(-1)}
                     >
                       <div className="js">
                         <svg

@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 function StepFour({ isCurrentStep, heading }) {
+  const navigate = useNavigate();
+
   return (
     <>
       {isCurrentStep && (
@@ -347,6 +350,9 @@ function StepFour({ isCurrentStep, heading }) {
                             </div>
                           </div>
                         </div>
+                        <p className="text-sm leading-6 text-[#0b3947]">
+                          Processing cost are per applicant
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -440,6 +446,7 @@ function StepFour({ isCurrentStep, heading }) {
                     <div
                       className="zw bcr jt v2-space-x-8 pr or bey btnPrevious"
                       id="btnPreviousSidebar"
+                      onClick={() => navigate(-1)}
                     >
                       <div className="js">
                         <svg

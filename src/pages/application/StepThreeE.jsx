@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 function StepThreeE({ isCurrentStep, heading }) {
+  const navigate = useNavigate();
+
   return (
     <div
       id="step=step_2c"
@@ -472,6 +475,7 @@ function StepThreeE({ isCurrentStep, heading }) {
                 <div
                   className="zw bcr jt v2-space-x-8 pr or bey btnPrevious"
                   id="btnPreviousSidebar"
+                  onClick={() => navigate(-1)}
                 >
                   <div className="js">
                     <svg

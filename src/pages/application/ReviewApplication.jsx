@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
+
+import { useNavigate } from "react-router-dom";
+
 // TODO: Work on the payment overlay
 function ReviewApplication({ isCurrentStep }) {
+  const navigate = useNavigate();
+
   return (
     <div
       id="step=review"
@@ -397,6 +402,7 @@ function ReviewApplication({ isCurrentStep }) {
                 <div
                   className="zw bcr jt v2-space-x-8 pr or bey btnPrevious"
                   id="btnPreviousSidebar"
+                  onClick={() => navigate(-1)}
                 >
                   <div className="js">
                     <svg
